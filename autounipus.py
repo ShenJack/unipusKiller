@@ -11,9 +11,9 @@ driver.find_element_by_id("username").send_keys(username)
 driver.find_element_by_id("password").send_keys(password)
 driver.find_element_by_class_name("newlogintable_third_button").click()
 
-my_script = open("core/myscript.js", encoding='utf-8').read()
-addIn = "var keyScore = %s; \n" % (80 / 100)
+my_script = open("answer.js", encoding='utf-8').read()
+# addIn = "var keyScore = %s; \n" % (80 / 100)
 
 my_script = addIn + my_script
 
-driver.execute_script()
+driver.execute_script(my_script)
