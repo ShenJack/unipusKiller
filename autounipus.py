@@ -2,7 +2,11 @@ from selenium import webdriver
 from keysProcess import keyGenerator
 from random import Random
 
-driver = webdriver.Chrome(executable_path='C:\chromedriver.exe')
+chromeOptions = webdriver.ChromeOptions()
+prefs = {"profile.managed_default_content_settings.images": 2}
+chromeOptions.add_experimental_option("prefs", prefs)
+
+driver = webdriver.Chrome(executable_path='C:\Gaming\chromedriver.exe',options=chromeOptions)
 
 username = 161002516
 password = 161002516
@@ -30,6 +34,8 @@ for (i, j) in list:
             key = ''
         form_data+='&answer[]=' + key
     result = driver.execute_script('''
+    var done = false;
+    var score = 0;
     $.ajaxSetup({
                 async : false
             });
@@ -40,11 +46,17 @@ for (i, j) in list:
         var question = JSON.parse(data);
         if(question.key!==''){
             console.log(question.myPercentScore);
-            return question.myPercentScore;
+            score =  question.myPercentScore;
+            done = true;
         }
     }).error(function () {
         console.log('error');
+        done = true;
         return 'error';
     })
+    while(!done){
+        
+    }
+    return score;
     ''',form_data)
     print(result)
