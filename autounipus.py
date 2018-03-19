@@ -1,7 +1,8 @@
 from selenium import webdriver
 from keysProcess import keyGenerator
+from random import Random
 
-driver = webdriver.Chrome(executable_path='C:\Gaming\chromedriver.exe')
+driver = webdriver.Chrome(executable_path='C:\chromedriver.exe')
 
 username = 161002516
 password = 161002516
@@ -18,17 +19,21 @@ driver.get('http://202.204.121.159/book/book184/app_index.php?unit=1')
 a = keyGenerator()
 list = a.getKeys()
 
-# percent =
+percent = 80
+ran = Random()
 
 for (i, j) in list:
     form_data = ''
     form_data +='ItemID=' + i
     for key in j.split('^'):
+        if ran.random() > percent/100:
+            key = ''
         form_data+='&answer[]=' + key
-    result = driver.execute_async_script('''
+    result = driver.execute_script('''
     $.ajaxSetup({
                 async : false
             });
+
     $.post('postDrag.php',arguments[0] , function (data) {
         // console.log('------- '+count + ' ------- ');
         // console.log(' : ' + data);

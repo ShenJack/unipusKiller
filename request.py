@@ -1,23 +1,24 @@
 import requests
 import json
 
-url = 'https://www.mywbsite.fr/Services/GetFromDataBaseVersionned'
-payload = {
-    "Host": "www.mywbsite.fr",
+url = 'http://202.204.121.159/book/book184/postDrag.php'
+headers = {
+    "Host": "202.204.121.159",
     "Connection": "keep-alive",
-    "Content-Length": 129,
-    "Origin": "https://www.mywbsite.fr",
-    "X-Requested-With": "XMLHttpRequest",
-    "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5",
-    "Content-Type": "application/json",
+    # "Content-Length": "9",
     "Accept": "*/*",
-    "Referer": "https://www.mywbsite.fr/data/mult.aspx",
-    "Accept-Encoding": "gzip,deflate,sdch",
-    "Accept-Language": "fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4",
-    "Accept-Charset": "ISO-8859-1,utf-8;q=0.7,*;q=0.3",
-    "Cookie": "ASP.NET_SessionId=j1r1b2a2v2w245; GSFV=FirstVisit=; GSRef=https://www.google.fr/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CHgQFjAA&url=https://www.mywbsite.fr/&ei=FZq_T4abNcak0QWZ0vnWCg&usg=AFQjCNHq90dwj5RiEfr1Pw; HelpRotatorCookie=HelpLayerWasSeen=0; NSC_GSPOUGS!TTM=ffffffff09f4f58455e445a4a423660; GS=Site=frfr; __utma=1.219229010.1337956889.1337956889.1337958824.2; __utmb=1.1.10.1337958824; __utmc=1; __utmz=1.1337956889.1.1.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)"
+    "Origin": "http://202.204.121.159",
+    "X-Requested-With": "XMLHttpRequest",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36",
+    "Content-Type":"application/x-www-form-urlencoded;charset=UTF-8",
+    "Referer": "http://202.204.121.159/book/book184/app_index.php?unit=1",
+    "Accept-Encoding": "gzip,deflate",
+    "Accept-Language": "zh-CN,zh;q=0.9",
+    "Cookie": "NCCE=1acf337a350acefa62f2503f4216c660; Hm_lvt_8a1d0cf914523c7ed112dbd25e018957=1521388665; Hm_lpvt_8a1d0cf914523c7ed112dbd25e018957=1521389835"
 }
-# Adding empty header as parameters are being sent in payload
-headers = {}
-r = requests.post(url, data=json.dumps(payload), headers=headers)
+
+
+r = requests.post(url, data=json.dumps({
+    'ItemID':10
+}), headers=headers)
 print(r.content)
